@@ -1,0 +1,41 @@
+@import "compass/reset";
+
+$rubyred: #D52100;
+$logo_img: "ruby.png";
+
+body {
+  margin-top: 1.0em;
+  background-color: #ffffff;
+  font-family: Helvetica, Arial, san-serif;
+  color: #000000;
+}
+
+#container {
+  margin: 0 auto;
+  width: 700px;
+}
+
+h1 {
+  font-family: Lora, Georgia, Times, serif;
+  font-size: 3.8em;
+  color: $rubyred;
+  margin-bottom: 3px;
+}
+
+a {
+  color: $rubyred;
+  text-decoration: none;
+}
+
+.logo {
+  background: image-url($logo_img) no-repeat;
+  width: image-width($logo_img);
+  height: image-height($logo_img);
+}
+
+.description {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-style: italic;
+}
