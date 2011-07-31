@@ -1,25 +1,45 @@
+$blueprint_grid_columns: 7;
+$blueprint_grid_width: 100px;
+
 @import "compass/reset";
+@import "blueprint";
 
 $rubyred: #D52100;
 $logo_img: "ruby.png";
+$content_font: Helvetica, Arial, sans-serif;
+$title_font: Lora, Georgia, Times, serif;
 
 body {
   margin-top: 1.0em;
   background-color: #ffffff;
-  font-family: Helvetica, Arial, san-serif;
+  font-family: $content_font;
   color: #000000;
 }
 
-#container {
-  margin: 0 auto;
-  width: 700px;
+#home {
+  @include container;
+  
+  #sidebar {
+    @include column(3);
+  }
+  
+  #content {
+    @include column(4, true);
+  }
 }
 
 h1 {
-  font-family: Lora, Georgia, Times, serif;
+  font-family: $title_font;
   font-size: 3.8em;
   color: $rubyred;
   margin-bottom: 3px;
+}
+
+h2 {
+  font-family: $title_font;
+  font-size: 1.9em;
+  color: $rubyred;
+  margin-bottom: 10px;
 }
 
 a {
@@ -27,10 +47,21 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 5px 0;
+}
+
+.date {
+  font-family: $content_font;
+  font-style: italic;
+  font-size: 0.8em;
+  color: #4D4D4D;
+}
+
 .logo {
   background: image-url($logo_img) no-repeat;
   width: image-width($logo_img);
-  height: image-height($logo_img);
+  padding-top: image-height($logo_img);
 }
 
 .description {
