@@ -1,5 +1,6 @@
 --- 
 layout: post
-title: Logo Design Contest for Riviera.rb
+title: Riviera.rb Design Contest
 ---
-We are still waiting for someone to write something interesting here...
+
+More to come soon...

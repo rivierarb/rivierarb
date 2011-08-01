@@ -17,7 +17,7 @@ body {
   color: #000000;
 }
 
-#home {
+#layout {
   @include container;
   
   #sidebar {
@@ -93,5 +93,17 @@ p {
   .past_dated .post_title {
     color: $lightgrey;
   }
+}
+
+.post {
+  line-height: 1.4em;
+  
+  ul { margin-left: 1.4em; }
+  
+  li { list-style-type: disc; }
+  
+  em { font-style: italic; }
+  
+  strong { font-weight: bold; }
 }
 
