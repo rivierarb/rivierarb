@@ -5,6 +5,7 @@ $blueprint_grid_width: 100px;
 @import "blueprint";
 
 $rubyred: #D52100;
+$lightgrey: #4D4D4D;
 $logo_img: "ruby.png";
 $content_font: Helvetica, Arial, sans-serif;
 $title_font: Lora, Georgia, Times, serif;
@@ -48,20 +49,21 @@ a {
 }
 
 p {
-  margin: 5px 0;
+  margin: 15px 0;
 }
 
 .date {
   font-family: $content_font;
   font-style: italic;
   font-size: 0.8em;
-  color: #4D4D4D;
+  color: $lightgrey;
 }
 
 .logo {
   background: image-url($logo_img) no-repeat;
   width: image-width($logo_img);
   padding-top: image-height($logo_img);
+  text-decoration: none;
 }
 
 .description {
@@ -70,3 +72,26 @@ p {
   margin-top: 30px;
   font-style: italic;
 }
+
+.archives {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  
+  li {
+    margin-bottom: 5px;
+  }
+
+  a:hover {
+    color: $rubyred;
+    text-decoration: underline;
+  }
+
+  .post_title {
+    margin-left: 10px;
+  }
+
+  .past_dated .post_title {
+    color: $lightgrey;
+  }
+}
+

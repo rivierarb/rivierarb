@@ -11,12 +11,25 @@ title: Riviera Ruby Group
     <p><a href="mailto:contact@rivierarb.fr">contact@rivierarb.fr</a></p>
   </div>
   <div id="content">
+    <h2>Events</h2>
+    <ol class="archives">
+    {% for post in site.categories.events offset: 0 limit: 9999 %}
+      <li class="{% if post.date < site.time %}past_dated{% endif %}">
+        <a href="{{ post.url }}">
+          <span class="date">{{ post.date | date: '%Y-%m-%d' }}</span>
+          <span class="post_title">{{ post.title }}</span>
+        </a>
+      </li>
+    {% endfor %}
+    </ol>
     <h2>News</h2>
     <ol class="archives">
-    {% for post in site.posts offset: 0 limit: 9999 %}
+    {% for post in site.categories.news offset: 0 limit: 9999 %}
       <li>
-        <span class="date">{{ post.date | date: '%Y-%m-%d' }}</span>
-        <a href="{{ post.url }}">{{ post.title }}</a>
+        <a href="{{ post.url }}">
+          <span class="date">{{ post.date | date: '%Y-%m-%d' }}</span>
+          <span class="post_title">{{ post.title }}</span>
+        </a>
       </li>
     {% endfor %}
     </ol>
