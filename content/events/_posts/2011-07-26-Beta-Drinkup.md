@@ -7,6 +7,8 @@ The first _Ruby drink-up of Sophia_ took place on the 26th of July at the
 Green King pub. We got twelve early adopters for this Beta and 
 had a very good time.
 
+![Some of the early adopters](https://lh5.googleusercontent.com/-y-UJQ5j-8W0/Tjr4yI3Sg5I/AAAAAAAABd0/fOs_KwWZPf8/s400/2011-07-26%25252020.08.09.jpg)
+
 Thanks to [Evangenieur](http://www.evangenieur.com/wordpress/) for a very
 interesting demonstration of a social-video-sharing project he is 
 working on with his team.
