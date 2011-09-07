@@ -1,6 +1,6 @@
 --- 
 layout: post
-title: Riviera.rb Design Contest
+title: Riviera.rb design contest
 ---
 
 More to come soon...
