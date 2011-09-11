@@ -5,6 +5,13 @@
   <title>{{ page.title }} - Riviera.rb</title>
   <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> 
+  <script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.latest.js"></script> 
+  <script type="text/javascript"> 
+    $(document).ready(function() {
+        $('.slideshow').cycle({ fx: 'fade' });
+    });
+  </script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-24962214-1']);
@@ -22,13 +29,16 @@
   <div id="layout">
     <div id="sidebar">
       <a href="/"><h1 class="logo">Riviera.rb</h1></a>
-      <div class="description">
-        Riviera Ruby Group
-      </div>
-      <p><a href="mailto:contact@rivierarb.fr">contact@rivierarb.fr</a></p>
+      <ul class="contact">
+        <li>Contact us at <a href="mailto:contact@rivierarb.fr">contact@rivierarb.fr</a></li>
+        <li>Follow <a href="http://twitter.com/rivierarb">@rivierarb</a> on Twitter</li>
+      </ul>
     </div>
     <div id="content">
       {{ content }}
+    </div>
+    <div id="copyright">
+      Copyright photos courtesy of Maxime Menant and Muriel Salvan
     </div>
   </div>
 </body>
