@@ -106,13 +106,17 @@ p {
 
 .desc {
   padding-left: 10px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   line-height: 1.2em;
   color: #000;
   
   em {
     color: $rubyred;
     font-weight: bold;
+  }
+  
+  p {
+    margin: 0 0 15px 0;
   }
 }
 
