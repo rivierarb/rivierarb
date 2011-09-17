@@ -1,22 +1,14 @@
+$lightpink: #FFD4D4;
+$logo_img: "ruby.png";
+
 $blueprint_grid_columns: 9;
 $blueprint_grid_width: 100px;
 
-@import "compass/reset";
-@import "compass/css3";
 @import "blueprint";
-
-$rubyred: #D52100;
-$darkgrey: #4D4D4D;
-$lightgrey: #7A7A7A;
-$logo_img: "ruby.png";
-$content_font: Helvetica, Arial, sans-serif;
-$title_font: Lora, Georgia, Times, serif;
+@import "compass/css3";
 
 body {
-  margin-top: 1.0em;
-  background-color: #ffffff;
-  font-family: $content_font;
-  color: #000000;
+  margin-top: 10px;
 }
 
 #layout {
@@ -35,7 +27,7 @@ body {
   @include column(6, true);
   @include border-radius(5px, 5px);
   
-  background-color: #FFD4D4;
+  background-color: $lightpink;
   margin-bottom: 10px;
   margin-top: 0;
   padding: 10px 0 10px 0;
@@ -56,44 +48,18 @@ body {
   @include column(9, true);
 
   margin-top: 50px;
-  border-top: 1px;
-  border-top-color: $lightgrey;
-  border-style: solid;
-  
-  text-align: right;
-  line-height: 1.5em;
-  font-size: 0.8em;
-  color: $lightgrey;
 }
 
 h1 {
-  font-family: $title_font;
-  font-size: 3.8em;
-  color: $rubyred;
-  margin-bottom: 3px;
+  margin: 0 0 3px 0;
 }
 
 h2 {
-  font-family: $title_font;
-  font-size: 1.9em;
-  color: $rubyred;
-  margin-bottom: 10px;
-}
-
-a {
-  color: $rubyred;
-  text-decoration: none;
+  margin: 0 0 10px 0;
 }
 
 p {
   margin: 15px 0;
-}
-
-.date {
-  font-family: $content_font;
-  font-style: italic;
-  font-size: 0.8em;
-  color: $darkgrey;
 }
 
 .logo {
@@ -101,19 +67,10 @@ p {
   width: image-width($logo_img);
   padding-top: image-height($logo_img);
   margin-bottom: 30px;
-  text-decoration: none;
 }
 
 .desc {
   padding-left: 10px;
-  font-size: 1.1em;
-  line-height: 1.2em;
-  color: #000;
-  
-  em {
-    color: $rubyred;
-    font-weight: bold;
-  }
   
   p {
     margin: 0 0 15px 0;
@@ -121,6 +78,7 @@ p {
 }
 
 .slideshow {
+  display: block;
   margin-left: 20px;
 }
 
@@ -134,39 +92,7 @@ p {
   margin-bottom: 30px;
   margin-top: 10px;
   
-  li {
-    margin-bottom: 5px;
-  }
-
-  a:hover {
-    color: $rubyred;
-    text-decoration: underline;
-  }
-
   .post_title {
     margin-left: 10px;
   }
-
-  .past_dated .post_title {
-    color: $darkgrey;
-  }
 }
-
-.post {
-  line-height: 1.4em;
-  
-  ul { margin-left: 1.4em; }
-  
-  li { list-style-type: disc; }
-  
-  em { font-style: italic; }
-  
-  strong { font-weight: bold; }
-  
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
