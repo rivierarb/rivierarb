@@ -1,0 +1,98 @@
+$lightpink: #FFD4D4;
+$logo_img: "ruby.png";
+
+$blueprint_grid_columns: 9;
+$blueprint_grid_width: 100px;
+
+@import "blueprint";
+@import "compass/css3";
+
+body {
+  margin-top: 10px;
+}
+
+#layout {
+  @include container;
+  
+  #sidebar {
+    @include column(3);
+  }
+  
+  #content {
+    @include column(6, true);
+  }
+}
+
+#teaser {
+  @include column(6, true);
+  @include border-radius(5px, 5px);
+  
+  background-color: $lightpink;
+  margin-bottom: 10px;
+  margin-top: 0;
+  padding: 10px 0 10px 0;
+
+  #description {
+    @include column(3);
+  }
+  #photos {
+    @include column(3, true);
+  }
+}
+
+#categories {
+  @include column(6, true);
+}
+
+#copyright {
+  @include column(9, true);
+
+  margin-top: 50px;
+}
+
+h1 {
+  margin: 0 0 3px 0;
+}
+
+h2 {
+  margin: 0 0 10px 0;
+}
+
+p {
+  margin: 15px 0;
+}
+
+.logo {
+  background: image-url($logo_img) no-repeat;
+  width: image-width($logo_img);
+  padding-top: image-height($logo_img);
+  margin-bottom: 30px;
+}
+
+.desc {
+  padding-left: 10px;
+  
+  p {
+    margin: 0 0 15px 0;
+  }
+}
+
+.slideshow {
+  display: block;
+  margin-left: 20px;
+}
+
+.contact {
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+.archives {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  
+  .post_title {
+    margin-left: 10px;
+  }
+}
