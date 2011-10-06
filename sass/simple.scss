@@ -1,6 +1,6 @@
 $rubyred: #D52100;
-$darkgrey: #4D4D4D;
-$lightgrey: #7A7A7A;
+$date_color: #4D4D4D;
+$footer_color: #7A7A7A;
 $content_font: Helvetica, Arial, sans-serif;
 $title_font: Lora, Georgia, Times, serif;
 
@@ -15,13 +15,13 @@ body {
 
 #copyright {
   border-width: 1px 0 0 0;
-  border-top-color: $lightgrey;
+  border-top-color: $footer_color;
   border-style: solid;
   
   text-align: right;
   line-height: 1.5em;
   font-size: 0.8em;
-  color: $lightgrey;
+  color: $footer_color;
 }
 
 h1 {
@@ -57,7 +57,7 @@ li {
   font-family: $content_font;
   font-style: italic;
   font-size: 0.8em;
-  color: $darkgrey;
+  color: $date_color;
 }
 
 .logo {
@@ -92,7 +92,7 @@ li {
   }
   
   .past_dated .post_title {
-    color: $darkgrey;
+    color: $date_color;
   }
 }
 
