@@ -52,4 +52,20 @@ title: Riviera Ruby Group
     </li>
   {% endfor %}
   </ol>
+
+  <h2>Presentations</h2>
+  <ol class="archives">
+  {% for post in site.categories.presentations offset: 0 limit: 9999 %}
+    <li>
+      <a href="{{ post.href }}">
+        <span class="date">{{ post.date | date: '%Y-%m-%d' }}</span>
+        <span class="post_title">{{ post.title }}</span>
+      </a>
+      by
+      <a href="{{ post.author.href }}">
+        <span class="post_author">{{ post.author.name }}</span>
+      </a>
+    </li>
+  {% endfor %}
+  </ol>
 </div>
