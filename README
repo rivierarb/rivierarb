@@ -1,2 +1,6 @@
 This is the source for the blog of Riviera.rb.
 It is processed by Jekyll and Compass to render the static site.
+
+To run it:
+* Launch "compass watch" in a terminal
+* Launch "jekyll --auto --server" in another
