@@ -1,0 +1,668 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Messaging Systems - Riviera.rb April 2013</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <script>
+function print() {
+    $("body").css("background", "none");
+    $("article").removeClass("far-past");
+    $("article").removeClass("past");
+    $("article").removeClass("current");
+    $("article").removeClass("next");
+    $("article").removeClass("far-next");
+    $("*.to-build").removeClass("to-build");
+    $("article").css("display", "block");
+    $("article").css("top", "0");
+    $("article").css("left", "0");
+    $("article").css("margin", "0 0 9em 0");
+    $("article").css("position", "relative");
+}
+$(document).ready(function() {
+  //print();
+});
+  </script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/MQ_icon_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+<slide>
+<!--     <hgroup>
+      <h2>Communication problems?</h2>
+    </hgroup>
+ -->    <article class="flexbox vcenter"><br/>
+	  <img src="images/Communication.jpg" class="reflect" alt="Description" title="Description" width="85%" height="85%">
+      <!-- <img src="images/Communication.jpg" class="reflect" alt="Description" title="Description"> -->
+      <footer class="source">source: quickmeme.com</footer>
+    </article>
+  </slide>
+
+   <slide>
+    <hgroup>
+      <h2>Messaging Systems</h2>
+    </hgroup>
+    <article>
+		<br/><br/><br/>
+        <h3 class="auto-fadein">Messaging makes applications <b class="highlight">loosely coupled</b> by communicating <b class="highlight">asynchronously</b>,
+		which also makes the communication more <b class="highlight">reliable</b> because the two applications do not have to be running at the same time.</h3>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Why Messaging?</h2>
+    </hgroup>
+    <article>
+	  <br/><br/><br/><br/><br/>
+      <ul class="build">
+		<li><h2 class="highlight centered">Performance</h2><br/><br/><br/></li>
+		<li><h3 class="centered"><b class="highlight">improve response times</b> by doing some tasks asynchronously</h3></li>
+      </ul>
+    </article>
+  </slide>
+   <slide>
+    <hgroup>
+      <h2>Why Messaging?</h2>
+    </hgroup>
+    <article>
+	  <br/><br/><br/><br/><br/>
+      <ul class="build">
+		<li><h2 class="highlight centered">Decoupling</h2><br/><br/><br/></li>
+		<li><h3 class="centered"><b class="highlight">reduce complexity</b> by decoupling and isolating applications</h3></li>
+      </ul>
+    </article>
+  </slide>
+   <slide>
+    <hgroup>
+      <h2>Why Messaging?</h2>
+    </hgroup>
+    <article>
+	  <br/><br/><br/><br/><br/>
+      <ul class="build">
+		<li><h2 class="highlight centered">Scalability</h2><br/><br/><br/></li>
+		<li><h3 class="right_shift">build smaller apps that are <b class="highlight">easier to develop</b>, debug, test, and scale</h3></li>
+		<li><h3 class="right_shift"><b class="highlight">distribute tasks</b> across machines based on load</h3></li>
+      </ul>
+    </article>
+  </slide>
+   <slide>
+    <hgroup>
+      <h2>Why Messaging?</h2>
+    </hgroup>
+    <article>
+	  <br/><br/><br/><br/><br/>
+      <ul class="build">
+		<li><h2 class="highlight centered">High-quality, cost-effective</h2><br/><br/><br/></li>
+		<li><h3 class="centered">build multiple apps, using the most <b class="highlight">suitable language or framework</b> for each, versus one big monolithic app</h3></li>
+      </ul>
+    </article>
+  </slide>
+   <slide>
+    <hgroup>
+      <h2>Why Messaging?</h2>
+    </hgroup>
+    <article>
+	  <br/><br/><br/><br/><br/>
+      <ul class="build">
+		<li><h2 class="highlight centered">High availability</h2><br/><br/><br/></li>
+		<li><h3 class="right_shift">get <b class="highlight">robustness and reliability</b> through message queue persistence</h3></li>
+		<li><h3 class="right_shift">potentially get <b class="highlight">zero-downtime</b> redeploys</h3></li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Messaging Patterns</h2>
+    </hgroup>
+    <article>
+	  <br/><br/><br/><br/>
+      <ul class="build">
+        <li><h3><b class="highlight">Routing</b> schemes: multicast, broadcast, PointToPoint</h3></li>
+        <li><h3>Message <b class="highlight">store</b> (persistent, transient)</h3></li>
+		<li><h3>Message <b class="highlight">transformation</b></h3></li>
+	  </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><b>M</b>essage-<b>O</b>riented <b>M</b>iddleware</h2>
+    </hgroup>
+    <article><br/><br/><br/><br/>
+      <ul class="build">
+        <li><h3>infrastructure supporting <b class="highlight">sending and receiving messages</b> between distributed systems</h3></li>
+		<li><h3>message transfer agent = <b class="highlight">broker</b></h3></li>
+		<li><h3>standard <b class="highlight">protocols</b> and <b class="highlight">API</b>s</h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><b>J</b>ava <b>M</b>essage <b>S</b>ervice</h2>
+    </hgroup>
+    <article><br/><br/><br/>
+      <ul class="build" style="list-style-type:none;">
+        <li><h3><b class="highlight">standard</b> messaging <b class="highlight">API</b> for <b>Java</b> platform</h3>
+		<h3><b class="highlight">robust</b>, flexible</h3></li>
+		<li><p> </p>
+		<h3>cross platforms <b class="highlight">interoperability</b> is possible, but ...</h3>
+		<h3 class="right_shift">is <b class="-highlight">restrictive</b>, <b class="-highlight">limited</b>, and forces vendor lock-in.</h3></li>
+		<li><br/><br/><h3>Implementations: <b>ActiveMQ</b>, <b>HornetQ</b>, <b>Apollo</b></h3></li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>JMS API</h2>
+      <h3>Producer example</h3>
+    </hgroup>
+    <!-- <article class="smaller"> -->
+	<article>
+      <pre class="prettyprint" data-lang="java">
+import javax.jms.Connection;
+import org.apache.activemq.spring.ActiveMQConnectionFactory;
+
+ActiveMQConnectionFactory connectionFactory = <b>new ActiveMQConnectionFactory</b>();
+<b>connectionFactory.setBrokerURL</b>("tcp://localhost:61616");
+connection = <b>connectionFactory.createConnection</b>();
+<b>connection.start</b>();
+Session session = <b>connection.createSession</b>(false, Session.AUTO_ACKNOWLEDGE);
+Destination destination = <b>session.createTopic</b>("Testtopic");
+MessageProducer producer = <b>session.createProducer</b>(destination);
+<b>producer.setDeliveryMode</b>(DeliveryMode.NON_PERSISTENT);
+String text = "Message String";
+TextMessage message = <b>session.createTextMessage</b>(text);
+<b>producer.send</b>(message);
+<b>session.close</b>();
+      </pre>
+    </article>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>JMS API</h2>
+      <h3>Consumer example</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="java">
+import javax.jms.Connection;
+import org.apache.activemq.spring.ActiveMQConnectionFactory;
+
+ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+connectionFactory.setBrokerURL("tcp://localhost:61616");
+Connection connection = connectionFactory.createConnection();
+connection.start();
+Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+MessageConsumer consumer = session.createConsumer(session.createTopic("Testtopic"));
+consumer.setMessageListener(new MessageListener());
+      </pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Why AMQP?</h2>
+    </hgroup>
+    <article><br/><br/><br/>
+      <!--p>A list where items build:</p-->
+      <ul class="build" >
+        <li><h3>cross platforms <b class="highlight">interoperability</b> </h3></li>
+        <li><h3><b class="highlight">open standard protocol</b>, less vendor lock in</h3></li>
+        <li><h3><b class="highlight">efficient</b> binary wire protocol</h3></li>
+        <li><h3>support in <b class="highlight">various languages, on most platforms</b>, but ...</h3></li>
+		<li><h3 class="right_shift">scope is too large ...</h3>
+		<h3 class="right_shift"><b class="-highlight">no interoperability between implementations</b> (0.8, 0.9.1, 0.10, 1.0)</h3><br/><br/></li>
+		<li><h3>Implementations: <b>Apache Qpid, RabbitMQ, ActiveMQ (>5.8), Apollo</b></h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>AMQP: message flow</h2>
+    </hgroup>
+    <article><br/>
+      <img src="images/AMQP_01.png" class="reflect" alt="Description" title="Description">
+      <footer class="source">source: http://www.rvl.io/kapil/messaging</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>AMQP API</h2>
+      <h3>Ruby client - enqueue</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="ruby">
+<b>require 'amqp'</b>
+
+<b>AMQP.start</b>(:host => 'localhost') do |connection|
+  <b>AMQP::Channel.new</b>(connection) do |channel, open_ok|
+    <b>channel.on_error</b> do |channel, channel_close|
+      puts "Error #{channel_close.reply_code}: #{channel_close.reply_text}"
+    end
+    <b>channel.queue</b>('/queue/test_queue', :durable => true) do |queue, declare_ok|
+      <b>channel.default_exchange.publish</b> 'Message String',
+        :routing_key => queue.name, :persistent => true
+      EventMachine.add_timer(0.5) { connection.disconnect { EventMachine.stop } }
+    end
+  end
+end
+	  </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>AMQP API</h2>
+      <h3>Ruby client - dequeue</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="ruby">
+<b>require 'amqp'</b>
+
+<b>AMQP.start</b>(:host => 'localhost') do |connection|
+  <b>AMQP::Channel.new</b>(connection) do |channel, open_ok|
+    <b>channel.on_error</b>(&method(:handle_channel_exception))
+    <b>channel.queue</b>('/queue/test_queue', :durable => true) do |queue, declare_ok|
+      <b>queue.subscribe</b>(:ack => true) do |header, message|
+        puts "Received #{message}"
+        <b>header.ack</b>
+        if (message == 'QUIT')
+          <b>queue.unsubscribe</b>
+          connection.disconnect { EventMachine.stop }
+        end
+      end
+    end
+  end
+end
+	  </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Why not STOMP?</h2>
+    </hgroup>
+    <article><br/><br/><br/>
+      <!--p>A list where items build:</p-->
+      <ul class="build">
+        <li><h3><b>S</b>imple/Streaming <b>T</b>ext <b>O</b>riented <b>M</b>essaging <b>P</b>rotocol</h3></li>
+		<li><h3>simple and <b class="highlight">lightweight</b> (although verbose on the wire)</h3></li>
+		<li><h3>wide range of language <b class="highlight">bindings</b></h3></li>
+		<li><h3><b class="highlight">widely-interoperable</b>, but ...</h3></li>
+		<li><h3 class="right_shift">some features are implementation specific</h3>
+		<h3 class="right_shift">not straightforward to port code between brokers</h3></li>
+		<li><br/><br/><h3>Implementations: ActiveMQ, HornetQ, RabbitMQ</h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>STOMP API</h2>
+      <h3>Ruby client - enqueue</h3>
+    </hgroup>
+    <article><br/><br/>
+      <pre class="prettyprint" data-lang="ruby">
+<b>require 'stomp'</b>
+
+client = <b>Stomp::Client.new</b>(:host => 'localhost')
+<b>client.publish</b> '/queue/test_queue', 'Message String', :persistent => true
+<b>client.close</b>
+		</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>STOMP API</h2>
+      <h3>Ruby client - dequeue</h3>
+    </hgroup>
+    <article><br/><br/>
+      <pre class="prettyprint" data-lang="ruby">
+<b>require 'stomp'</b>
+
+client = <b>Stomp::Client.new</b>(:host => 'localhost')
+<b>client.subscribe</b> '/queue/test_queue', :ack => :client do |message|
+  puts "Received #{message}"
+  <b>client.acknowledge</b>(message)
+  <b>client.close</b> if (message == 'QUIT')
+end
+<b>client.join</b>
+	  </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Why not brokerless? </h2>
+    </hgroup>
+    <article><br/><br/>
+      <ul class="build">
+	    <li><br/><br/><h2 class="highlight centered">ZeroMQ</h2><br/><br/></li>
+		<li><h3 class="right_shift"><b class="highlight">high performance</b> and throughput oriented messaging middleware</h3></li>
+		<li><h3 class="right_shift">a <b class="highlight">socket</b> library</h3></li>
+		<li><h3 class="right_shift"><b class="highlight">transport agnostic</b> sockets: in-process, IPC, multicast, TCP </h3></li>
+		<li><h3 class="right_shift"><b class="highlight">message oriented</b></h3></li>
+		<li><h3 class="right_shift"><b class="highlight">topology </b>aware</h3></li>
+		<li><h3 class="right_shift"><b class="highlight">30+ languages</b> bindings</h3></li>
+
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ZeroMQ API</h2>
+      <h3>Ruby client - push</h3>
+    </hgroup>
+    <article><br/><br/>
+      <!--p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p-->
+      <pre class="prettyprint" data-lang="ruby">
+<b>require 'ffi-rzmq'</b>
+
+context = <b>ZMQ::Context.new</b> 1
+sender = <b>context.socket</b> ZMQ::PUSH
+<b>sender.connect</b>('tcp://127.0.0.1:5555')
+<b>sender.send_string</b>('Message String')
+<b>sender.close</b>
+		</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ZeroMQ API</h2>
+      <h3>Ruby client - pull</h3>
+    </hgroup>
+    <article><br/><br/>
+      <!--p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p-->
+      <pre class="prettyprint" data-lang="ruby">
+<b>require 'ffi-rzmq'</b>
+
+context = <b>ZMQ::Context.new</b> 1
+receiver = <b>context.socket</b> ZMQ::PULL
+<b>receiver.bind</b>('tcp://127.0.0.1:5555')
+message = ''
+<b>receiver.recv_string</b>(message)
+puts "Received #{message}"
+<b>receiver.close</b>
+		</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>U MOM in the Cloud!</h2>
+    </hgroup>
+    <article><br/><br/><br/><br/>
+      <ul class="build">
+        <li><h3><b>M</b>essage <b>Q</b>ueuing <b>S</b>ervice</h3>
+		<h3><b class="highlight">M</b>essage-<b class="highlight">O</b>riented <b class="highlight">M</b>iddleware deployed in a cloud using <b class="highlight">S</b>oftware <b class="highlight">a</b>s <b class="highlight">a</b> <b class="highlight">S</b>ervice model.</h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SaaS benefits</h2>
+    </hgroup>
+    <article><br/><br/><br/><br/>
+      <ul class="build fade">
+        <li><h3><b>eliminates</b> the traditional <b>overhead</b> associated with operating in-house messaging infrastructures<br/><br/></h3></li>
+        <li><h3>provides an <b>internet scale</b> messaging platform</h3></li>
+        <li><h3>simplifies <b>access</b> to messaging resources</h3></li>
+        <li><h3>facilitates <b>integration</b></h3></li>
+        <li><h3><b>reduces cost</b></h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Distributed solutions in the Cloud (SaaS)</h2>
+    </hgroup>
+    <article><br/><br/><br/><br/>
+      <!--p>A list where items build:</p-->
+      <ul class="build">
+        <h3>Amazon Simple Queue Service - <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html">ASQQ</a></h3>
+        <h3><a href="https://github.com/roq-messaging/RoQ/wiki/Documentation">RoQ</a> - Open Source project backed up by EURA NOVA</h3>
+        <h3><a href="http://www.cloudamqp.com/docs.html">CloudAMQP</a> - RabbitMQ as a Service  </h3>
+		<h3><a href="http://stormmq.com/docs/features">StormMQ</a> as a Service - AMQP in the Cloud </h3>
+      </ul>
+    </article>
+    </slide>
+
+  <slide>
+    <hgroup>
+      <h2>One size doesn’t fit all</h2>
+    </hgroup>
+    <article>
+      <img style="float: right;" src="images/Solution2.jpg" class="reflect" alt="Description" title="Description">
+	  <!-- <footer class="source" style="float: right;">source: quickmeme.com</footer> -->
+      <ul class="build">
+        <li><br/><br/><br/><br/><h3>Broker vs Brokerless</h3></li>
+    		<li><h3>Transient vs. Persistent messages</h3></li>
+		    <li><h3>Atomic transactions</h3></li>
+		    <li><h3>Fault-tolerance</h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testing framework</h2>
+    </hgroup>
+    <article><br/><br/><br/>
+      <ul class="build">
+        <li><h3><b>brokers</b>: ActiveMQ, Apollo, QPid, RabbitMQ, HornetQ, ZMQ broker</h3></li>
+        <li><h3><b>protocols</b>: AMQP, STOMP, socket</h3></li>
+        <li><h3>different <b>message size</b>: 32b, 1kb, 32kb</h3></li>
+        <li><h3><b>in-memory</b> vs. <b> persistent</b> queues (except for ZMQ)</h3></li>
+		<li></br></br><h3>References </h3>
+		<h3 class="right_shift"><b>Code</b> available on <a href="https://github.com/Muriel-Salvan/mq-benchmarks">github</a></h3>
+		<h3 class="right_shift">More details on <a href="http://x-aeon.com/wp/2013/04/10/a-quick-message-queue-benchmark-activemq-rabbitmq-hornetq-qpid-apollo">Muriel's Tech Blog</a></h3>
+		</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Benchmark (i) </h2>
+    </hgroup>
+    <article class="flexbox vcenter"><br/>
+      <img src="images/enq_and_deq_20k_1k.jpg" alt="Description" title="Description">
+      <!-- <footer class="source">source: http://x-aeon.com/wp/2013/04/10/a-quick-message-queue-benchmark-activemq-rabbitmq-hornetq-qpid-apollo</footer> -->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Benchmark (ii) </h2>
+    </hgroup>
+    <article class="flexbox vcenter"><br/>
+      <img src="images/enq_and_deq_200k_32b.jpg" alt="Description" title="Description">
+      <!-- <footer class="source">source: http://x-aeon.com/wp/2013/04/10/a-quick-message-queue-benchmark-activemq-rabbitmq-hornetq-qpid-apollo</footer> -->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Benchmark (iii) </h2><br/>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/enq_and_deq_200_32kb.jpg" alt="Description" title="Description">
+      <!-- <footer class="source">source: http://x-aeon.com/wp/2013/04/10/a-quick-message-queue-benchmark-activemq-rabbitmq-hornetq-qpid-apollo</footer> -->
+    </article>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>Functional requirements</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade" style="height: 500px">
+		<li><h3 style="position: absolute; top: 10%; left: 30%;">sequencing: FIFO mode, total ordering</h3></li>
+		<li><h3 style="position: absolute; top: 80%; left: 10%;">retry policy:  with regular, or exponential delay</h3></li>
+		<li><h3 style="position: absolute; top: 50%; left: 0%;">priority</h3></li>
+		<li><h3 style="position: absolute; top: 30%; left: 20%;">LIFO</h3></li>
+		<li><h3 style="position: absolute; top: 20%; left: 10%;">item expiration</h3></li>
+		<li><h3 style="position: absolute; top: 70%; left: 30%;">queuing delay</h3></li>
+		<li><h3 style="position: absolute; top: 30%; left: 60%;">filtering by content</h3></li>
+		<li><h3 style="position: absolute; top: 60%; left: 0%;">atomic transactions: one, or multiple operations, XA support</h3></li>
+		<li><h3 style="position: absolute; top: 90%; left: 30%;">asynchronous acknowledgement</h3></li>
+		<li><h3 style="position: absolute; top: 40%; left: 10%;">dequeue throttling: items/s, bandwith(kb/s), item window size</h3></li>
+		<li><h3 style="position: absolute; top: 50%; left: 20%;">message properties: size, max throughput, max items</h3></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Operational requirements</h2>
+    </hgroup>
+    <article><br/><br/><br/><br/>
+      <ul class="build" style="list-style-type:none;">
+        <li><h3>persistent queues</h3></li>
+        <li><h3>high availability for queuing</h3></li>
+		<li><h3>administrative features</h3></li>
+		</ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Wrap Up</h2>
+    </hgroup>
+    <article>
+      <!--p>A list where items build:</p-->
+      <ul class="build fade">
+        <li><h3>Why Messaging?</h3></li>
+        <li><h3>Messaging Patterns</h3></li>
+        <li><h3>Message-Oriented Middleware</h3></li>
+        <li><h3>JMS</h3></li>
+		<li><h3>Why AMQP?</h3></li>
+        <li><h3>Why not STOMP?</h3></li>
+		<li><h3>U MOM in the Cloud</h3></li>
+		<li><h3>One size doesn’t fit all</h3></li>
+		<li><h3>Testing framework - quick benchmark</h3></li>
+        <li><h3>Match MQ features to requirements</h3></li>
+      </ul>
+      <!--p>Another list, but items fade as they build:</p-->
+      <!--ul class="build fade">
+        <li>Hover over me!</li>
+        <li>Hover over me!</li>
+        <li>Hover over me!</li>
+      </ul-->
+    </article>
+  </slide>
+
+ <slide>
+    <hgroup>
+      <h2>References: Ruby gems, test framework</h2>
+    </hgroup>
+    <article><br/><br/><br/><br/>
+      <ul class="build" style="list-style-type:none;">
+        <li><h3><a href="https://github.com/ruby-amqp/amqp/">AMQP</a></h3>
+        <h3><a href="https://github.com/stompgem/stomp">STOMP</a></h3>
+		<h3><a href="https://github.com/chuckremes/ffi-rzmq">ZeroMQ</a></h3>
+		<h3><a href="https://github.com/Muriel-Salvan/mq-benchmarks">MQ test framework</a></h3></li>
+	  </ul>
+    </article>
+  </slide>
+
+   <slide>
+    <hgroup>
+      <h2>References: brokers, frameworks, protocols</h2>
+    </hgroup>
+    <article><br/><br/>
+      <ul class="build" style="list-style-type:none;">
+        <li><h3><a href="http://activemq.apache.org/activemq-580-release.html">Apache ActiveMQ</a></h3>
+		<h3><a href="http://activemq.apache.org/apollo/download.html">Apache Apollo</a></h3>
+		<h3><a href="http://qpid.apache.org/">Apache Qpid</a></h3>
+        <h3><a href="http://www.rabbitmq.com/download.html">RabbitMQ</a></h3>
+		<h3><a href="https://community.jboss.org/wiki/HornetQ">JBoss HornetQ</a></h3>
+		<h3><a href="http://www.zeromq.org/community">ZeroMQ</a></h3><br/></li>
+		<li><h3><a href="http://www.eaipatterns.com/toc.html">Enterprise Integration Patterns</a></h3>
+		<h3><a href="http://www.amqp.org/specification/0-9-1/amqp-org-download">AMQP 0.9.1 specs</a></h3>
+		<h3><a href="http://docs.oasis-open.org/amqp/core/v1.0/amqp-core-complete-v1.0.pdf">AMQP OASIS 1.0 specs</a></h3>
+		<h3><a href="http://stomp.github.com/index.html">STOMP specs</a></h3></li>
+		</ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar right"><img src="images/MQ_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2 style="color: #99FFFF">&lt;Thank You!&gt;</h2><br/><br/>
+      <h3><a href="https://twitter.com/acm1107"><b>@acm1107</b></a></h3>
+	</article>
+    <!--p class="auto-fadein" data-config-contact-->
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+<!--   <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/MQ_logo_white.png"></span>
+    </article>
+  </slide> -->
+
+   <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
