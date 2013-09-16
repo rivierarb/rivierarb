@@ -32,6 +32,7 @@ title: Riviera Ruby Group
 </div>
 
 <div id="categories">
+  <div id="category-events">
   <h2>Events</h2>
   <ol class="archives">
   {% for post in site.categories.events offset: 0 limit: 9999 %}
@@ -43,7 +44,8 @@ title: Riviera Ruby Group
     </li>
   {% endfor %}
   </ol>
-
+  </div>
+  <div id="category-presentations">
   <h2>Presentations</h2>
   <ol class="archives">
   {% for post in site.categories.presentations offset: 0 limit: 9999 %}
@@ -59,7 +61,8 @@ title: Riviera Ruby Group
     </li>
   {% endfor %}
   </ol>
-
+  </div>
+  <div id="category-news">
   <h2>News</h2>
   <ol class="archives">
   {% for post in site.categories.news offset: 0 limit: 9999 %}
@@ -71,4 +74,5 @@ title: Riviera Ruby Group
     </li>
   {% endfor %}
   </ol>
+  </div>
 </div>
