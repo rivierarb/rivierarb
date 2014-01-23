@@ -3,4 +3,4 @@ It is processed by Jekyll and Compass to render the static site.
 
 To run it:
 * Launch "compass watch" in a terminal
-* Launch "jekyll --auto --server" in another
+* Launch "jekyll serve --watch" in another
